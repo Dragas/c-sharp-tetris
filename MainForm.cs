@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Resources;
 using System.Windows.Forms;
+using TetroBlocks;
 
 namespace Tetris
 {
@@ -20,12 +21,9 @@ namespace Tetris
 	public partial class MainForm : Form
 	{
 		private GameField GF;
-		private TetrisField Preview;
+		private GameField Preview;
 		private TetrisGame Game;
-		
-		private NewRecordDialog NRDialog;
-		private RecordsForm RForm;
-		
+		public static Bitmap Red, Green, Blue, Yellow, Orange, Purple, LightBlue;
 		
 		private Image PausedImage, GameOverImage;
 		
@@ -38,7 +36,7 @@ namespace Tetris
 			
 			GF=new GameField(18, 12);
 			
-			Preview=new TetrisField(4, 4);
+			Preview=new GameField(4, 4);
 			Preview.BorderColor=Preview.BackColor;
 			
 			Random rnd=new Random();
@@ -61,9 +59,6 @@ namespace Tetris
 
 		void Game_StateChanged(object sender, EventArgs e)
 		{
-			ScoreLabel.Text=Game.Score.ToString();
-			FiguresLabel.Text=Game.FiguresDropped.ToString();
-			ElapsedTimeLabel.Text=(DateTime.Now-Game.GameStarted).ToString();
 			Refresh();
 		}
 		
@@ -120,7 +115,6 @@ namespace Tetris
 				{
 					Game.NextFigure=Figure.RandomFigure();
 					Game.FiguresDropped++;
-					FiguresLabel.Text=Game.FiguresDropped.ToString();
 					Preview.Clear();
 					Preview.SetFigure(Game.NextFigure.MoveTo(1, 1), false);
 					
@@ -135,11 +129,8 @@ namespace Tetris
 							//GameTimer.Enabled=true;
 						}
 					}
-					
-					ShowAdvice();
 				}
 			}
-			ElapsedTimeLabel.Text=(DateTime.Now-Game.GameStarted).ToString(@"mm\:ss");
 			
 			Refresh();
 		}
@@ -153,39 +144,9 @@ namespace Tetris
 			
 			if(Saver.HighScores.CanAdd(test) || Saver.HighTimes.CanAdd(test))
 			{
-				NRDialog=new NewRecordDialog();
-				if(NRDialog.ShowDialog()==DialogResult.OK)
-				{
-					test.UserName=NRDialog.UserName;
-					Saver.Save(test);
-					
-					RForm=new RecordsForm(test);
-					if(RForm.ShowDialog()==DialogResult.OK)
-					{
-						NewGame();
-					}
-				}
+				Saver.Save(test);
 			}
 		}
-		
-		private static string[] Advices=new string[]
-		{
-			"Дождитесь, пока исчезнет индикатор вокруг изображения следующей фигуры, чтобы иметь возможность отложить фигуру!",
-			"Используйте клавишу Q, чтобы отложить фигуру и воспользоваться следующей",
-			"Вместе с количеством сброшенных фигур растёт и скорость игры",
-			"Чтобы попасть в таблицу рекордов, вы можете как набрать наибольшее количество очков, так и продержаться в игре дольше всех",
-			"Используйте клавишу F3, чтобы поставить игру на паузу",
-			"Решили начать новую игру? Нажмите F2, чтобы сделать это немедленно!"
-		};
-		private void ShowAdvice(int advice)
-		{
-			AdviceLabel.Text=Advices[advice];
-		}
-		private void ShowAdvice()
-		{
-			ShowAdvice(new Random().Next(1, Advices.Length));
-		}
-		
 		// Обработка ввода
 		void MainFormKeyDown(object sender, KeyEventArgs e)
 		{
@@ -201,7 +162,7 @@ namespace Tetris
 			{
 				GF.MoveRight();
 			}
-			if(e.KeyData==Keys.Up || e.KeyData==Keys.W)
+			if(e.KeyData == Keys.Space)
 			{
 				if(GF.Drop())
 					SetScore(Game.Score+5);
@@ -211,7 +172,7 @@ namespace Tetris
 				if(GF.MoveDown())
 					SetScore(Game.Score+1);
 			}
-			if(e.KeyData==Keys.Space)
+			if(e.KeyData==Keys.W || e.KeyData == Keys.Up)
 			{
 				GF.RotateFigure();
 			}
@@ -226,10 +187,6 @@ namespace Tetris
 					Game.FigureChanged=true;
 					if(Game.NextFigure==Figure.Zero)
 						OnGameOver();
-				}
-				if(Game.FigureChanged)
-				{
-					ShowAdvice(0);
 				}
 			}
 			Refresh();
@@ -268,13 +225,13 @@ namespace Tetris
 			
 			try
 			{
-				TetrisField.Blue=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImBLUE"));
-				TetrisField.Red=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImRED"));
-				TetrisField.Green=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImGREEN"));
-				TetrisField.LightBlue=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImLBLUE"));
-				TetrisField.Purple=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPURPLE"));
-				TetrisField.Yellow=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImYELLOW"));
-				TetrisField.Orange=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImORANGE"));
+				Blue=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImBLUE"));
+				Red=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImRED"));
+				Green=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImGREEN"));
+				LightBlue=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImLBLUE"));
+				Purple=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPURPLE"));
+				Yellow=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImYELLOW"));
+				Orange=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImORANGE"));
 				
 				PausedImage=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImPAUSE"));
 				GameOverImage=new System.Drawing.Bitmap(GetType().Assembly.GetManifestResourceStream("ImGAMEOVER"));
@@ -287,17 +244,6 @@ namespace Tetris
 			//MessageBox.Show(string.Join(", ", res));
 		}		
 		
-		void NextFigurePictureBoxPaint(object sender, PaintEventArgs e)
-		{
-			Preview.BorderColor=Game.FigureChanged? Color.FromArgb(160, 128, 128) : Preview.BackColor;
-			Preview.Paint(e.Graphics);
-		}
-		
-		void TipsCheckBoxCheckedChanged(object sender, EventArgs e)
-		{
-			GF.ShowTips=TipsCheckBox.Checked;
-		}
-		
 		void ПаузапродолжитьToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			SetPause(!Game.Paused);
@@ -306,38 +252,6 @@ namespace Tetris
 		void ВыходToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			Close();
-		}
-		
-		void ТаблицаРекордовToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			RForm=new RecordsForm(new TetrisSave());
-			if(RForm.ShowDialog()==DialogResult.OK && Game.GameOver)
-				NewGame();
-		}
-		
-		void ОбИгреToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			new AboutDialog().ShowDialog();
-		}
-		
-		void ПравилаToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			try
-			{
-				System.Diagnostics.Process.Start(@"help\help.htm");
-			}
-			catch
-			{
-				try
-				{
-					System.Diagnostics.Process.Start(@"help\");
-				}
-				catch
-				{
-					MessageBox.Show("Не удалось открыть файл помощи О_о Попробуйте самостоятельно открыть папку с игрой," +
-					                " а в ней - папку help", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				}
-			}
 		}
 	}
 }

@@ -20,7 +20,6 @@
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
-    <ApplicationIcon>..\..\..\..\Downloads\1383951811_3459.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,40 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AboutDialog.cs" />
-    <Compile Include="AboutDialog.Designer.cs">
-      <DependentUpon>AboutDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="MainForm.cs" />
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewRecordDialog.cs" />
-    <Compile Include="NewRecordDialog.Designer.cs">
-      <DependentUpon>NewRecordDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RecordsForm.cs" />
-    <Compile Include="RecordsForm.Designer.cs">
-      <DependentUpon>RecordsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Saver.cs" />
-    <Compile Include="TetrisField.cs" />
-    <Compile Include="TetrisGame.cs" />
+    <Compile Include="GameField.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="AboutDialog.resx">
-      <DependentUpon>AboutDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewRecordDialog.resx">
-      <DependentUpon>NewRecordDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RecordsForm.resx">
-      <DependentUpon>RecordsForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +111,12 @@
     <EmbeddedResource Include="Images\gameover.png">
       <LogicalName>ImGAMEOVER</LogicalName>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="TetroBlocks\TetroBlocks.csproj">
+      <Project>{ba15a287-1f77-415e-9346-cc5dcf1df99f}</Project>
+      <Name>TetroBlocks</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -8,3 +8,18 @@ C:\Users\user\Documents\SharpDevelop Projects\Tetris\Tetris\obj\Debug\Tetris.pdb
 C:\Users\user\Documents\SharpDevelop Projects\Tetris\Tetris\obj\Debug\Tetris.NewRecordDialog.resources
 C:\Users\user\Documents\SharpDevelop Projects\Tetris\Tetris\obj\Debug\Tetris.RecordsForm.resources
 C:\Users\user\Documents\SharpDevelop Projects\Tetris\Tetris\obj\Debug\Tetris.AboutDialog.resources
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\obj\Debug\Tetris.csprojResolveAssemblyReference.cache
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\obj\Debug\Tetris.MainForm.resources
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\obj\Debug\Tetris.csproj.GenerateResource.Cache
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\obj\Debug\Tetris.exe
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\obj\Debug\Tetris.pdb
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\Tetris.exe
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\Tetris.pdb
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\mscorlib.dll
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\TetroBlocks.dll
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\TetroBlocks.pdb
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\normidna.nlp
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\normnfc.nlp
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\normnfd.nlp
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\normnfkc.nlp
+C:\Users\cpartner\Desktop\Desktop\Recycle bin\bunch of dead projects\c-sharp-tetris\bin\Debug\normnfkd.nlp
